@@ -180,7 +180,7 @@ function addShiftRecord(textFile, shiftObj) {
         return {};
     }
 
-    // 1️⃣ Read file to check for duplicates
+   
     let existingLines = [];
     if (fs.existsSync(textFile)) {
         existingLines = fs.readFileSync(textFile, "utf8").trim().split("\n");
@@ -194,13 +194,13 @@ function addShiftRecord(textFile, shiftObj) {
         }
     }
 
-    // 2️⃣ Calculate shiftDuration, idleTime, activeTime, metQuota
+   
     const shiftDuration = getShiftDuration(shiftObj.startTime, shiftObj.endTime);
     const idleTime = getIdleTime(shiftObj.startTime, shiftObj.endTime);
     const activeTime = getActiveTime(shiftDuration, idleTime);
     const quotaMet = metQuota(shiftObj.date, activeTime);
 
-    // 3️⃣ Build record
+
     const record = {
         driverID: shiftObj.driverID,
         driverName: shiftObj.driverName,
@@ -214,7 +214,7 @@ function addShiftRecord(textFile, shiftObj) {
         hasBonus: false
     };
 
-    // 4️⃣ Insert record in file
+ 
     let newLines = [];
     let inserted = false;
     for (let i = 0; i < existingLines.length; i++) {
